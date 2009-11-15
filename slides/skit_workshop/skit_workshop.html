@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<meta name="version" content="S5 1.1" />
+<title>The Linux Development Environment</title>
+<meta name="author" content="Steven Fernandez &lt;steve&#64;lonetwin.net&gt;" />
+<meta name="date" content="11 Nov 2009" />
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 5196 2007-06-03 20:25:28Z wiemann $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left {
+  clear: left }
+
+img.align-right {
+  clear: right }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font-family: serif ;
+  font-size: 100% }
+
+pre.literal-block, pre.doctest-block {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+<!-- configuration parameters -->
+<meta name="defaultView" content="slideshow" />
+<meta name="controlVis" content="hidden" />
+<!-- style sheet links -->
+<script src="ui/default/slides.js" type="text/javascript"></script>
+<link rel="stylesheet" href="ui/default/slides.css"
+      type="text/css" media="projection" id="slideProj" />
+<link rel="stylesheet" href="ui/default/outline.css"
+      type="text/css" media="screen" id="outlineStyle" />
+<link rel="stylesheet" href="ui/default/print.css"
+      type="text/css" media="print" id="slidePrint" />
+<link rel="stylesheet" href="ui/default/opera.css"
+      type="text/css" media="projection" id="operaFix" />
+
+<style type="text/css">
+#currentSlide {display: none;}
+</style>
+</head>
+<body>
+<div class="layout">
+<div id="controls"></div>
+<div id="currentSlide"></div>
+<div id="header">
+
+</div>
+<div id="footer">
+<h1>The Linux Development Environment</h1>
+
+</div>
+</div>
+<div class="presentation">
+<div class="slide" id="slide0">
+<h1 class="title">The Linux Development Environment</h1>
+<table class="docinfo" frame="void" rules="none">
+<col class="docinfo-name" />
+<col class="docinfo-content" />
+<tbody valign="top">
+<tr><th class="docinfo-name">Author:</th>
+<td>Steven Fernandez &lt;<a class="reference external" href="mailto:steve&#64;lonetwin.net">steve&#64;lonetwin.net</a>&gt;</td></tr>
+<tr><th class="docinfo-name">Date:</th>
+<td>11 Nov 2009</td></tr>
+</tbody>
+</table>
+<!-- Definitions of interpreted text roles (classes) for S5/HTML data. -->
+<!-- This data file has been placed in the public domain. -->
+<!-- Colours
+======= -->
+<!-- Text Sizes
+========== -->
+<!-- Display in Slides (Presentation Mode) Only
+========================================== -->
+<!-- Display in Outline Mode Only
+============================ -->
+<!-- Display in Print Only
+===================== -->
+<!-- Display in Handout Mode Only
+============================ -->
+<!-- Incremental Display
+=================== -->
+<div class="contents handout topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#introduction-what-is-gnu-linux" id="id1">Introduction - What is GNU/Linux ?</a></li>
+<li><a class="reference internal" href="#linux-desktop-environment" id="id2">Linux Desktop environment</a></li>
+<li><a class="reference internal" href="#linux-development-environment-gcc" id="id3">Linux Development environment - GCC</a></li>
+<li><a class="reference internal" href="#linux-development-environment-make" id="id4">Linux Development environment - Make</a></li>
+<li><a class="reference internal" href="#linux-development-environment-more" id="id5">Linux Development environment - More ...</a></li>
+</ul>
+</div>
+
+</div>
+<div class="slide" id="introduction-what-is-gnu-linux">
+<h1>Introduction - What is GNU/Linux ?</h1>
+<ul class="incremental">
+<li><p class="first">Linux is the kernel and GNU/Linux the system</p>
+<div class="handout container">
+<p>GNU/Linux is an operating system developed collaboratively by members of
+the GNU/Linux community. This community includes thousands of contributors,
+right from big software companies like IBM, SUN, HP, Google, Red Hat (even
+Microsoft !) to individual developers like college students, doctors,
+artists and regular software engineers.</p>
+<p>The kernel of the GNU/Linux system is called Linux and was created by Linus
+Torvalds when he was a student in the early 1990s. It has since then grown
+to possibly the most feature-rich operating system due to contributions of
+thousands of developers worldwide.</p>
+<p>The GNU project was started in the early 80s to replace the closed source
+UNIX operating systems commonly available at that time. By the time the
+Linux kernel came out, the GNU project had developed free software to
+replace almost all commonly used tools in the commercial UNIX. So, together
+GNU/Linux made a complete operating system made only out of free software.</p>
+</div>
+</li>
+<li><p class="first">Linux is <em>not</em> Unix</p>
+<div class="handout container">
+<p>Although Linux is a Unix-like operating system at the core, it is far more
+user friendly and feature-rich than any other commercial UNIX. It has a
+rich desktop environment, supports the most wide variety of CPU
+architectures and hardware devices.</p>
+<p>It has application software to cater for every need from mobile devices to
+high end servers, from scientific computing to financial applications, from
+low level network routers to web frameworks.</p>
+</div>
+</li>
+<li><p class="first">Linux is <em>not</em> Windows</p>
+<div class="handout container">
+<p>When most people with a Microsoft windows background, first start working
+with a linux system, expect things to appear and work the same as windows.
+Long time Windows users don't have a complete understanding of the concepts
+of multiple desktops, a file hierarchical file-system, lose coupling
+between applications and files, the 'every-thing-is-a-file' concept and
+most importantly the relative significance of user roles and it's
+implications of file permissions and ownership.</p>
+<p>So, the Linux operating system appears to be <em>hard</em> for them. The truth
+however, is it is just <em>different</em>. After gaining a basic understanding of
+the Linux environment, everything will seem easy because of the
+consistency. However, when working on a linux system for the first time,
+one /has/ to remember that one is working with a different operating system
+with a different design philosophy and a different approach towards doing
+things.</p>
+<p>We shall see later some of the main differences between the Windows and
+Linux environment.</p>
+</div>
+</li>
+<li><p class="first">Linux comes in various flavors</p>
+<div class="handout container">
+<p>As described earlier, the Linux system is more correctly referred to as the
+GNU/Linux operating system because it is made up of the linux kernel plus
+the GNU applications. Many companies, organizations and communities also
+bundle the linux kernel, GNU tools as well as other free software into a
+easily installable, upgradeable and maintainable collection commonly known
+as a <em>distribution</em> or <em>distro</em>.</p>
+<p>The advantage of a using distro are</p>
+<ul class="simple">
+<li>Consistent and easy way of installing, upgrading and removing packages.</li>
+<li>Not having to integrate and configure each and every application you
+install.</li>
+<li>Single resource to get packages, which as tested and found to be most
+suitable by majority of people for a specific purpose.</li>
+</ul>
+<p>The most popular distros are</p>
+<ul class="simple">
+<li>Fedora: Core values are Freedom, Friends, Features, First.</li>
+<li>Ubuntu: Philosophy of software freedom should benefit everybody.</li>
+<li>Red Hat Enterprise Linux (RHEL), SUSE Linux Enterprise Server (SELS)</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="slide" id="linux-desktop-environment">
+<h1>Linux Desktop environment</h1>
+<ul class="incremental tiny">
+<li><p class="first">Multiple desktop environments</p>
+<p>GNOME, KDE, Xfce, Lxde, Window Maker ...etc</p>
+</li>
+<li><p class="first">Built in applications</p>
+<p>Web browsers, Package Management tools, Media players, CD writing tools,
+Archive Manager, Scripting Languages ...etc</p>
+</li>
+<li><p class="first">Same yet different</p>
+<ul class="simple">
+<li>Office suites - Open Office, Koffice, Abiword, gnumeric ...etc</li>
+<li>Development tools - Kdevelop, Eclipse, CodeBlocks ...etc</li>
+<li>Editors - Gedit, emacs, vim ...etc</li>
+</ul>
+</li>
+<li><p class="first">Despite all available applications -- Command Line is still <em>better</em> !</p>
+<div class="handout container">
+<p>We shall try the following:</p>
+<ul class="simple">
+<li>Login into different desktop environments</li>
+<li>Change the look and feel of our desktops</li>
+<li>Add users to the system</li>
+<li>Understand the filesystem layout/permissions/ownership</li>
+<li>Explore applications installed on the system</li>
+<li>Install and erase applications from the system</li>
+<li>Try different development tools, editors and other applications</li>
+<li>Explore the shell and some common linux commands</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="slide" id="linux-development-environment-gcc">
+<h1 class="with-subtitle">Linux Development environment - GCC</h1>
+<h2 id="the-gnu-compiler-collection">The GNU Compiler Collection</h2>
+<div class="handout container">
+GCC stands for the &quot;GNU Compiler collection&quot;. The command <tt class="docutils literal"><span class="pre">gcc</span></tt> is a single
+tool used to compile, link, assemble C and C++ source for a <em>lot</em> of
+different architectures. It is fairly modular and there also are additional
+<em>frontends</em> that can be used to compile fortran, ObjectiveC, ObjectiveC++,
+ADA and java code too. GCC is available of many different platforms by the
+most active development happens on the linux port of gcc.</div>
+<ul class="incremental small">
+<li><p class="first">Most basic use:</p>
+<pre class="literal-block">
+gcc hello.c
+</pre>
+</li>
+<li><p class="first">Some additional flags:</p>
+<pre class="literal-block">
+gcc -o hello hello.c
+gcc -o hypot hypot.c -lm
+gcc -g -o hypot_debug hypot_debug.c -lm
+gcc -o gnuapp gnuapp.c -I.
+</pre>
+</li>
+</ul>
+<div class="handout container">
+<p>Some of the commonly used options:</p>
+<table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-o <var>file</var></span></kbd></td>
+<td>output file name</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-l <var>lib</var></span></kbd></td>
+<td>include 'lib' during linking</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-g</span></kbd></td>
+<td>include debug symbols</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-I <var>path</var></span></kbd></td>
+<td>include 'path' in <em>include</em> search path</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-E</span></kbd></td>
+<td>stop after preprocessing stage</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-S</span></kbd></td>
+<td>stop after compilation stage</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-c</span></kbd></td>
+<td>compile and assemble but do not link</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-W<var>all</var></span></kbd></td>
+<td>treat all warnings as errors</td></tr>
+</tbody>
+</table>
+<p>We shall edit and compile the files in the gcc directory</p>
+</div>
+</div>
+<div class="slide" id="linux-development-environment-make">
+<h1 class="with-subtitle">Linux Development environment - Make</h1>
+<h2 id="using-makefiles">Using Makefiles</h2>
+<div class="handout container">
+<p><tt class="docutils literal"><span class="pre">make</span></tt> is a tool initially created to ease the process of building
+applications that had source code spread across multiple files. However, make
+is designed to be fairly general purpose and can be used to <em>build</em> anything
+that has multiple <em>dependencies</em>.</p>
+<p>To use <tt class="docutils literal"><span class="pre">make</span></tt> one has to create a <tt class="docutils literal"><span class="pre">Makefile</span></tt>. The general syntax of a
+<tt class="docutils literal"><span class="pre">Makefile</span></tt> is:</p>
+<pre class="literal-block">
+target: pre-requisites ...
+        commands
+
+for example:
+hello: hello.c
+        gcc -o hello hello.c
+
+We shall write a makefile to compile the files in the gcc directory
+</pre>
+</div>
+<pre class="literal-block">
+make
+make all
+make &lt;target&gt;
+make clean
+</pre>
+</div>
+<div class="slide" id="linux-development-environment-more">
+<h1>Linux Development environment - More ...</h1>
+<ul class="incremental small">
+<li><p class="first">Documentation</p>
+<p>man, pinfo, /usr/share/doc, web ...etc</p>
+</li>
+<li><p class="first">Libraries</p>
+<ul class="simple">
+<li>glibc</li>
+<li>OpenGL, SDL ...etc</li>
+<li>QT, GTK+ ...etc</li>
+</ul>
+</li>
+<li><p class="first">Examples</p>
+</li>
+<li><p class="first">Questions ?</p>
+</li>
+</ul>
+</div>
+</div>
+</body>
+</html>
